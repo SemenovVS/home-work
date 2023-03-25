@@ -1,36 +1,24 @@
 package module11;
 
-
-import java.io.*;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class Task1 {
+        public static void main (String[]args){
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader buff = new BufferedReader(new FileReader("C:\\Users\\Бублик\\IdeaProjects\\untitled7\\src\\main\\resources\\names.txt"));
-        List<String> array = new ArrayList<>();
-        String str;
-       while ((str = buff.readLine()) !=null){
-           array.add(str);
-       }
-Sorted sorted = new Sorted();
-List<String> newList = sorted.sort(array);
-    }
-}
-    class Sorted {
-        public List<String> sort (List<String> file){
-            List<String> newList = file
-                    .stream()
-                    .filter(x -> {
-                        if (x.contains("1") || x.contains("3") || x.contains("5")
-                                || x.contains("7") || x.contains("9")) {
-                            return true;
-                        }
-                        return false;
-                    })
-                    .toList();
-        return newList;
+            List<String> names = Arrays.asList("Vova", "Vasia", "Petya", "Kolya", "Vlad");
+            System.out.println(numbering(names));
+
+        }
+        public static String numbering (List < String > names) {
+            AtomicInteger number = new AtomicInteger(1);
+            AtomicInteger index = new AtomicInteger(1);
+            return names.stream()
+                    .filter(name -> number.getAndIncrement() % 2 != 0)
+                    .map(name -> index.getAndAdd(2) + ". " + name)
+                    .collect(Collectors.joining(", "));
         }
     }
 
