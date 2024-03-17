@@ -11,6 +11,8 @@ public class Task1 {
             List<String> names = Arrays.asList("Vova", "Vasia", "Petya", "Kolya", "Vlad");
             System.out.println(numbering(names));
 
+
+                
         }
         public static String numbering (List < String > names) {
             AtomicInteger number = new AtomicInteger(1);
